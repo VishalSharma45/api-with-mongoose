@@ -38,4 +38,19 @@ app.put("/update/:_id", async (req, res) => {
     console.log(data);
 });
 
+// Search records
+app.get("/search/:key", async (req, res)=>{
+    // This console will prints object like 
+    // { key: 'samsung' }
+    console.log(req.params);
+    let data = await Products.find(
+        {
+        "$or":[ // this "$or" means results are from multiple fields
+            {name: {$regex:req.params.key}},
+            {brand: {$regex:req.params.key}}
+        ]
+    })
+    res.send(data);
+});
+
 app.listen(5500);
