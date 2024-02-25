@@ -8,7 +8,7 @@ const upload = multer({
             callback(null, "uploads")
         },
         filename: function (req, file, callback) {
-            callback(null, file.fieldname + "_" + Date().now + ".jpg")
+            callback(null, file.fieldname + "-" + Date.now() + ".jpg")
         }
     })
 }).single("user_file");
